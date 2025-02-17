@@ -21,6 +21,7 @@ const ThemeConfig: FC<Props> = ({ children }) => {
           colorBorderSecondary: c.border,
           colorBgContainer: c.container,
           borderRadius: 4,
+          // colorBgElevated: c.container,
         },
         components: {
           Menu: {
@@ -30,7 +31,7 @@ const ThemeConfig: FC<Props> = ({ children }) => {
             darkPopupBg: c.container,
             darkSubMenuItemBg: c.bodySecondary,
             activeBarWidth: 4,
-            activeBarBorderWidth: 2,
+            activeBarBorderWidth: 0,
             itemBorderRadius: 0,
             itemMarginInline: 0,
             darkItemSelectedBg: c.activeAlpha,
