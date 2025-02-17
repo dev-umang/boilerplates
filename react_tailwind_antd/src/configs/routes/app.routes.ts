@@ -1,13 +1,23 @@
 import { FC } from "react";
 import { RouteObject } from "react-router-dom";
-import { MainLayout } from "@app/layouts/main";
+import { AccountLayout, MainLayout } from "@app/layouts";
 import { _404Page } from "@modules/404";
 import { DemoPage1, DemoPage2, DemoPage3 } from "@modules/DemoToDelete";
 import { HomePage } from "@modules/home";
+import { ProfilePage } from "@modules/profile";
+import { SettingsPage } from "@modules/settings";
 import { SplashPage } from "@modules/splash";
 
 // List of URL paths that our application supports.
-export const Paths = ["/", "/home", "/demo1", "/demo2", "/demo3"] as const;
+export const Paths = [
+  "/",
+  "/home",
+  "/account/profile",
+  "/account/settings",
+  "/demo1",
+  "/demo2",
+  "/demo3",
+] as const;
 
 export type Path = (typeof Paths)[number]; // Exported type of Paths for auto completion.
 
@@ -31,6 +41,10 @@ export const AppRoutes: RouteObject[] = [
   r(SplashPage, "/"),
   r(MainLayout, [
     r(HomePage, "/home"),
+    r(AccountLayout, [
+      r(ProfilePage, "/account/profile"),
+      r(SettingsPage, "/account/settings"),
+    ]),
     r(DemoPage1, "/demo1"),
     r(DemoPage2, "/demo2"),
     r(DemoPage3, "/demo3"),

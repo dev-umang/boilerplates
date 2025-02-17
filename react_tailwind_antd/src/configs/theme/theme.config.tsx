@@ -50,7 +50,7 @@ const ThemeConfig: FC<Props> = ({ children }) => {
         },
       }}
     >
-      {children}
+      <div className={`${darkMode ? "dark" : "light"}`}>{children}</div>
     </ConfigProvider>
   );
 };

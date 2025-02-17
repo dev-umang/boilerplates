@@ -8,7 +8,8 @@ type MenuItem = Required<MenuProps>["items"][number];
 
 type MenuTypes = {
   sider: MenuProps["items"];
-  profile: MenuProps["items"];
+  accountPopover: MenuProps["items"];
+  accountPage: MenuProps["items"];
 };
 
 const m = (
@@ -23,6 +24,18 @@ const m = (
   children,
 });
 
+const g = (
+  title: string,
+  children: MenuProps["items"],
+  fontSize?: 12 | 14,
+): MenuItem => ({
+  key: title,
+  label: title,
+  children,
+  type: "group",
+  style: { fontSize },
+});
+
 const AllPages: MenuItem[] = [
   m("/demo1", "Demo 1"),
   m("/demo2", "Demo 2"),
@@ -34,9 +47,28 @@ export const Menus: MenuTypes = {
     m("/home", "Home", <HomeOutlined />),
     m(undefined, "Demo", <BoxPlotOutlined />, AllPages),
   ],
-  profile: [
-    m("/home", "Home"),
-    ...AllPages,
+  accountPopover: [
+    { type: "divider" },
+    g(
+      "Application",
+      [
+        m("/home", "Home"),
+        m("/account/profile", "Profile"),
+        m("/account/settings", "Settings"),
+      ],
+      12,
+    ),
+    g("Pages", AllPages, 12),
+    {
+      type: "divider",
+    },
     m(undefined, <span className="text-red-500">Log Out</span>),
+  ],
+  accountPage: [
+    { type: "divider" },
+    g("Account", [
+      m("/account/profile", "Profile"),
+      m("/account/settings", "Settings"),
+    ]),
   ],
 };
